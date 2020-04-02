@@ -13,7 +13,6 @@ func main() {
 	// menggunakan handlerFunc dari golang
 	h := http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(res, "Hello Golang")
-		fmt.Println(res)
 	})
 	err := http.ListenAndServe(":3000", h)
 	if err != nil {
