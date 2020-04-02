@@ -7,14 +7,24 @@ import (
 )
 
 func main() {
-	h := myHandler{}
+	fmt.Println("Server running at port :3000")
+	// h := myHandler{}
+
+	// menggunakan handlerFunc dari golang
+	h := http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		fmt.Fprintf(res, "Hello Golang")
+		fmt.Println(res)
+	})
 	err := http.ListenAndServe(":3000", h)
-	log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-type myHandler struct {
-}
+// type myHandler struct {
+// }
 
-func (m myHandler) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(res, "Hello Golang")
-}
+// // memasukkan myHandler kedalam fungsi ServeHTTP punya golang
+// func (m myHandler) ServeHTTP(res http.ResponseWriter, req *http.Request) {
+// 	fmt.Fprintf(res, "Hello Golang")
+// }
